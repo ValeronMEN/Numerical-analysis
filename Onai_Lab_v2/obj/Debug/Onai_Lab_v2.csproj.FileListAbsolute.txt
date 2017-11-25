@@ -1,0 +1,11 @@
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\bin\Debug\Onai_Lab_v2.exe.config
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\bin\Debug\Onai_Lab_v2.exe
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\bin\Debug\Onai_Lab_v2.pdb
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.csprojResolveAssemblyReference.cache
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.Form1.resources
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.Properties.Resources.resources
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.csproj.GenerateResource.Cache
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.exe
+c:\users\drlove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.pdb
+C:\Users\DrLove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.Lobachevskiy.resources
+C:\Users\DrLove\documents\visual studio 2015\Projects\Onai_Lab_v2\Onai_Lab_v2\obj\Debug\Onai_Lab_v2.Specification.resources
