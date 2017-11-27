@@ -12,8 +12,10 @@ namespace Onai_Lab_v2
 {
     public partial class Specification : Form
     {
-        private String example16 = "(cosx)^3 + x^3 * (log2(sh(x) + ch(x)))^3 - x^3 = 5";
+        private String example16 = "(cosx)^3 + x^3 * (log2(sinh(x) + cosh(x)))^3 - x^3 = 5";
         private String example24 = "x^3 - (cos(x))^2 - 5x = 3";
+
+        public delegate double function(double x);
 
         public Specification()
         {
@@ -51,10 +53,11 @@ namespace Onai_Lab_v2
         private void button1_Click(object sender, EventArgs eventArgs)
         {
             textBoxError.Text = "";
-            ResultBox.Text = "Starting...";
+            ResultBox.Text = "Starting...\r\n";
             if (comboBoxNumberOfExample.SelectedIndex == -1)
             {
                 textBoxError.Text = "Метод и пример не заданы";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
                 return;
             }
             try
@@ -66,33 +69,35 @@ namespace Onai_Lab_v2
             catch (FormatException exc)
             {
                 textBoxError.Text = "Ошибка в значениях a, b или E";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n" + exc;
                 return;
             }
             double a = Convert.ToDouble(textBoxA.Text);
             double b = Convert.ToDouble(textBoxB.Text);
             double e = Convert.ToDouble(textBoxE.Text);
+            double result;
             switch (comboBoxNumberOfExample.SelectedIndex)
             {
                 case 0:
-                    double result = methodOfChords(a, b, e);
-                    ResultBox.Text += "Result: " + result.ToString();
-                    MessageBox.Show("Success!\r\nResult: " + result.ToString());
-                    return;
+                    result = methodOfChords(a, b, e, example24Function, example24FunctionDerivative1, example24FunctionDerivative2);
+                    break;
                 case 1:
-                    //equation.Text = example16;
-                    //textBoxMethod.Text = "Метод простых итераций";
+                    //result = methodOfSimpleIterations(a, b, e, example16FunctionInReverse);
+                    result = 1;
                     break;
                 case 2:
-                    //equation.Text = example16;
-                    //textBoxMethod.Text = "Упрощенный метод Ньютона";
+                    result = methodOfNewtonMod(a, b, e, example16Function, example16FunctionDerivative1, example16FunctionDerivative2);
                     break;
                 default:
-                    return;
+                    throw new Exception("Неправильный метод");
             }
-            MessageBox.Show("Success!");
+            ResultBox.AppendText("Result: " + result.ToString());
+            MessageBox.Show("Success!\r\nResult: " + result.ToString());
+            return;
         }
 
-        private double example24Function(double x) {
+        private double example24Function(double x)
+        {
             return Math.Pow(x, 3) - Math.Pow(Math.Cos(x), 2) - 5 * x - 3;
         }
 
@@ -106,46 +111,115 @@ namespace Onai_Lab_v2
             return 2 * (3 * x + Math.Cos(2 * x));
         }
 
-        private double methodOfChords(double a, double b, double e)
+        private double methodOfChords(double a, double b, double e, function f, function fder1, function fder2)
         {
-            int n = 1;
+            if (f(a) * fder2(a) < 0)
+            {
+                double c = a;
+                a = b;
+                b = c;
+            }
+            int n = 0;
+            double b1;
             while (true)
             {
-                if (example24Function(a) * example24FunctionDerivative2(a) < 0)
+                b1 = methodOfChordsIteration(a, b, f);
+                ResultBox.AppendText("b" + n.ToString() + " = " + b1.ToString() + " (a = " + a.ToString() + ")\r\n");
+                if (methodOfChordsCriterion(b, b1, e, f, fder1))
                 {
-                    double c = a;
-                    a = b;
-                    b = c;
+                    return b1;
                 }
-                double b_old = b;
-                b = methodOfChordsIteration(a, b);
-                ResultBox.Text += "b" + n.ToString() + " = " + b.ToString() + " (a = " + a.ToString() + ")\r\n";
-                if (n > 20) {
-                    return -1;
-                }
-                if (methodOfChordsCriterion(b_old, b, e))
-                {
-                    return b;
-                }
+                b = b1;
                 n++;
             }
         }
 
-        private double methodOfChordsIteration(double a, double bn)
+        private double methodOfChordsIteration(double a, double bn, function f)
         {
-            return bn - ((a - bn) * example24Function(bn)) / (example24Function(a) - example24Function(bn));
+            return bn - ((a - bn) * f(bn)) / (f(a) - f(bn));
         }
 
-        private bool methodOfChordsCriterion(double b1, double b2, double e)
+        private bool methodOfChordsCriterion(double x1, double x2, double e, function f, function fder1)
         {
-            double c = Math.Abs(example24FunctionDerivative1(b1));
-            ResultBox.Text += "Criterion: |f(b(n+1))| = " + Math.Abs(example24Function(b2)) + "; alpha * epsilon = " + c * e + "\r\n";
-            return Math.Abs(example24Function(b2)) < c * e;
+            double c = Math.Abs(fder1(x1));
+            ResultBox.Text += "Criterion: |f(x(n+1))| = " + Math.Abs(f(x2)) + "; alpha * epsilon = " + c * e + "\r\n";
+            return Math.Abs(f(x2)) < c * e;
         }
 
         private double example16Function(double x)
         {
             return Math.Pow(Math.Cos(x), 3) + Math.Pow(x, 3) * Math.Pow(Math.Log((Math.Sinh(x) + Math.Cosh(x)), 2), 3) - Math.Pow(x, 3) - 5;
         }
+
+        //(-3 * x^2 - 3 * sin(x) * (cos(x))^2 + (3 * x^3 * (log(sinh(x) + cosh(x)))^2) / (log(2)^3) + (3 * x^2 * (log(sinh(x) + cosh(x)))^3) / (log(2)^3))'
+        private double example16FunctionDerivative1(double x)
+        {
+            return Math.Pow(x, 2) * (-3) - 3 * Math.Sin(x) * Math.Pow(Math.Cos(x), 2) +
+                (3 * Math.Pow(x, 3) * Math.Pow(Math.Log(Math.Sinh(x) + Math.Cosh(x)), 2)) / (Math.Pow(Math.Log(2), 3)) +
+                (3 * Math.Pow(x, 2) * Math.Pow(Math.Log(Math.Sinh(x) + Math.Cosh(x)), 3)) / (Math.Pow(Math.Log(2), 3));
+        }
+
+        private double example16FunctionDerivative2(double x)
+        {
+            return (-6) * x - 3 * Math.Pow(Math.Cos(x), 3) + 6 * Math.Cos(x) * Math.Pow(Math.Sin(x), 2) +
+                (6 * x * Math.Pow(Math.Log(Math.Sinh(x) + Math.Cosh(x)), 3)) / (Math.Pow(Math.Log(2), 3)) +
+                (6 * Math.Pow(x, 3) * Math.Log(Math.Sinh(x) + Math.Cosh(x))) / (Math.Pow(Math.Log(2), 3)) +
+                (18 * Math.Pow(x, 2) * Math.Pow(Math.Log(Math.Sinh(x) + Math.Cosh(x)), 2)) / (Math.Pow(Math.Log(2), 3));
+        }
+
+        private double methodOfNewtonMod(double a, double b, double e, function f, function fder1, function fder2)
+        {
+            int n = 0;
+            if (f(a) * fder2(a) < 0)
+            {
+                double c = a;
+                a = b;
+                b = c;
+            }
+            double a1, a0 = a;
+            while (true)
+            {
+                a1 = methodOfNewtonModIteartion(a, a0, f, fder1);
+                ResultBox.AppendText("a" + n.ToString() + " = " + a1.ToString() + " (b = " + b.ToString() + ")\r\n");
+                if (methodOfChordsCriterion(a, a1, e, f, fder1))
+                {
+                    return a1;
+                }
+                a = a1;
+                n++;
+            }
+        }
+
+        private double methodOfNewtonModIteartion(double a, double a0, function f, function fder1)
+        {
+            return a - (f(a)/ fder1(a0));
+        }
+        /*
+        private double example16FunctionInReverse(double x)
+        {
+            return Math.Pow(((5 - Math.Pow(Math.Cos(x), 3)) / (Math.Pow(Math.Log((Math.Sinh(x) + Math.Cosh(x)), 2), 3) - 1)), (1 / 3));
+        }
+
+        private double methodOfSimpleIterations(double a, double b, double e, function frev)
+        {
+            int n = 0;
+            double xn, x = (a + b) / 2;
+            while (true)
+            {
+                xn = example16FunctionInReverse(x);
+                ResultBox.AppendText("x" + n.ToString() + " = " + xn.ToString() + " (b = " + b.ToString() + ")\r\n");
+                if (methodOfChordsCriterion(x, xn, e, f, fder1))
+                {
+                    return a1;
+                }
+                x = xn;
+                if (n > 200)
+                {
+                    return -1;
+                }
+                n++;
+            }
+        }
+        */
     }
 }

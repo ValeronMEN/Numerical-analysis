@@ -46,7 +46,7 @@
             this.tb7 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ResultBox = new System.Windows.Forms.TextBox();
             this.errorLabel = new System.Windows.Forms.Label();
             this.textBoxError = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -197,16 +197,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // ResultBox
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBox1.Location = new System.Drawing.Point(13, 174);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(706, 152);
-            this.textBox1.TabIndex = 47;
+            this.ResultBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ResultBox.Location = new System.Drawing.Point(13, 174);
+            this.ResultBox.Multiline = true;
+            this.ResultBox.Name = "ResultBox";
+            this.ResultBox.ReadOnly = true;
+            this.ResultBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ResultBox.Size = new System.Drawing.Size(706, 152);
+            this.ResultBox.TabIndex = 47;
             // 
             // errorLabel
             // 
@@ -236,7 +236,7 @@
             this.ClientSize = new System.Drawing.Size(731, 338);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.textBoxError);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ResultBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb0);
@@ -284,7 +284,7 @@
         private System.Windows.Forms.TextBox tb7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ResultBox;
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.TextBox textBoxError;
     }

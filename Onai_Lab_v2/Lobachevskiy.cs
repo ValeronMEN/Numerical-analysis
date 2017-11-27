@@ -40,6 +40,7 @@ namespace Onai_Lab_v2
             catch (FormatException exc)
             {
                 textBoxError.Text = "Ошибка в значениях коэфициентов";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n" + exc;
                 return;
             }
             double [] a = new double[8];
