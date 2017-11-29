@@ -49,6 +49,8 @@
             this.ResultBox = new System.Windows.Forms.TextBox();
             this.errorLabel = new System.Windows.Forms.Label();
             this.textBoxError = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxE = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tb0
@@ -189,7 +191,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 122);
+            this.button1.Location = new System.Drawing.Point(14, 153);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(707, 37);
             this.button1.TabIndex = 46;
@@ -200,7 +202,7 @@
             // ResultBox
             // 
             this.ResultBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ResultBox.Location = new System.Drawing.Point(13, 174);
+            this.ResultBox.Location = new System.Drawing.Point(15, 205);
             this.ResultBox.Multiline = true;
             this.ResultBox.Name = "ResultBox";
             this.ResultBox.ReadOnly = true;
@@ -211,7 +213,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(345, 86);
+            this.errorLabel.Location = new System.Drawing.Point(347, 117);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(50, 17);
             this.errorLabel.TabIndex = 49;
@@ -223,17 +225,35 @@
             this.textBoxError.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.textBoxError.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxError.ForeColor = System.Drawing.Color.Red;
-            this.textBoxError.Location = new System.Drawing.Point(401, 83);
+            this.textBoxError.Location = new System.Drawing.Point(403, 114);
             this.textBoxError.Name = "textBoxError";
             this.textBoxError.ReadOnly = true;
             this.textBoxError.Size = new System.Drawing.Size(318, 22);
             this.textBoxError.TabIndex = 48;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(28, 17);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "e =";
+            // 
+            // textBoxE
+            // 
+            this.textBoxE.Location = new System.Drawing.Point(57, 72);
+            this.textBoxE.Name = "textBoxE";
+            this.textBoxE.Size = new System.Drawing.Size(100, 22);
+            this.textBoxE.TabIndex = 50;
+            // 
             // Lobachevskiy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(731, 338);
+            this.ClientSize = new System.Drawing.Size(733, 372);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxE);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.textBoxError);
             this.Controls.Add(this.ResultBox);
@@ -287,5 +307,7 @@
         private System.Windows.Forms.TextBox ResultBox;
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.TextBox textBoxError;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxE;
     }
 }

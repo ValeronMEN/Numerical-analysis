@@ -231,6 +231,7 @@
             this.Name = "Specification";
             this.Text = "Specification";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Specification_FormClosing);
+            this.Load += new System.EventHandler(this.Specification_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

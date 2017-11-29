@@ -194,32 +194,37 @@ namespace Onai_Lab_v2
         {
             return a - (f(a)/ fder1(a0));
         }
-        /*
-        private double example16FunctionInReverse(double x)
-        {
-            return Math.Pow(((5 - Math.Pow(Math.Cos(x), 3)) / (Math.Pow(Math.Log((Math.Sinh(x) + Math.Cosh(x)), 2), 3) - 1)), (1 / 3));
-        }
 
-        private double methodOfSimpleIterations(double a, double b, double e, function frev)
+        private void Specification_Load(object sender, EventArgs e)
         {
-            int n = 0;
-            double xn, x = (a + b) / 2;
-            while (true)
-            {
-                xn = example16FunctionInReverse(x);
-                ResultBox.AppendText("x" + n.ToString() + " = " + xn.ToString() + " (b = " + b.ToString() + ")\r\n");
-                if (methodOfChordsCriterion(x, xn, e, f, fder1))
-                {
-                    return a1;
-                }
-                x = xn;
-                if (n > 200)
-                {
-                    return -1;
-                }
-                n++;
-            }
+
         }
-        */
+        /*
+private double example16FunctionInReverse(double x)
+{
+   return Math.Pow(((5 - Math.Pow(Math.Cos(x), 3)) / (Math.Pow(Math.Log((Math.Sinh(x) + Math.Cosh(x)), 2), 3) - 1)), (1 / 3));
+}
+
+private double methodOfSimpleIterations(double a, double b, double e, function frev)
+{
+   int n = 0;
+   double xn, x = (a + b) / 2;
+   while (true)
+   {
+       xn = example16FunctionInReverse(x);
+       ResultBox.AppendText("x" + n.ToString() + " = " + xn.ToString() + " (b = " + b.ToString() + ")\r\n");
+       if (methodOfChordsCriterion(x, xn, e, f, fder1))
+       {
+           return a1;
+       }
+       x = xn;
+       if (n > 200)
+       {
+           return -1;
+       }
+       n++;
+   }
+}
+*/
     }
 }
