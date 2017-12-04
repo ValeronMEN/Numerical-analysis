@@ -37,10 +37,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Font = new System.Drawing.Font("Vladimir Script", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label9.Location = new System.Drawing.Point(184, 32);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(240, 39);
+            this.label9.Size = new System.Drawing.Size(236, 39);
             this.label9.TabIndex = 30;
             this.label9.Text = "Onai Lab 9000";
             // 
@@ -48,9 +48,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Yellow;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(32, 98);
+            this.button1.Location = new System.Drawing.Point(12, 98);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 102);
+            this.button1.Size = new System.Drawing.Size(248, 171);
             this.button1.TabIndex = 31;
             this.button1.Text = "Specification";
             this.button1.UseVisualStyleBackColor = false;
@@ -60,9 +60,9 @@
             // 
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.Location = new System.Drawing.Point(352, 98);
+            this.button2.Location = new System.Drawing.Point(321, 98);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(225, 102);
+            this.button2.Size = new System.Drawing.Size(265, 171);
             this.button2.TabIndex = 32;
             this.button2.Text = "Lobachevskiy";
             this.button2.UseVisualStyleBackColor = false;
@@ -72,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(599, 232);
+            this.ClientSize = new System.Drawing.Size(598, 281);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
