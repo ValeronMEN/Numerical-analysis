@@ -38,6 +38,7 @@ namespace Onai_Lab_v2
                 Convert.ToDouble(tb1.Text);
                 Convert.ToDouble(tb0.Text);
                 Convert.ToDouble(textBoxE.Text);
+                Convert.ToInt32(textBoxCancel.Text);
             }
             catch (FormatException exc)
             {
@@ -69,31 +70,82 @@ namespace Onai_Lab_v2
                     break;
                 }
             }
+
             double[] aNew = new double[n+1];
             for (int i = 0; i<(n+1); i++)
             {
                 aNew[i] = a[i];
             }
+
             ResultBox.AppendText("Extent of equation is " + n.ToString() + "\r\n");
             displayArray(aNew, "Coefficients");
-            aNew = shortArrayInNumber(aNew, 30, getMinCoefAbs(a));
-            methodLobachevskiy(Convert.ToDouble(textBoxE.Text), aNew);
+            int minCoefWhenWeNeedToShortCoefs = 30;
+            aNew = shortArrayInNumber(aNew, minCoefWhenWeNeedToShortCoefs, getMinCoefAbs(a));
 
-            ResultBox.SelectionColor = Color.Magenta;
-            ResultBox.AppendText("Simple method of finding boundaries\r\n");
-            ResultBox.SelectionColor = Color.Black;
+            displayTitle("Finding roots with Lobachevskiy method");
+            double[] x = methodLobachevskiy(Convert.ToDouble(textBoxE.Text), aNew);
+
+            displayTitle("Checking signs of roots");
+            int cancel = Convert.ToInt32(textBoxCancel.Text);
+            ResultBox.AppendText("Cancel is " + cancel + "\r\n");
+            x = getSignedRoots(x, aNew, cancel);
+            displayArray(x, "Proper roots (NaN appears when it's impossible to define sign)");
+
+            displayTitle("Simple method of finding boundaries");
             double R = calculateBigRadius(aNew);
             double r = calculateSmallRadius(aNew);
-            ResultBox.AppendText("Upper boundary (R) = " + R + "\r\nLower boundary (r) = " + r + "\r\n");
-            ResultBox.AppendText("Range of positive numbers: (" + r + "; " + R + "), negative numbers: (-" + R + "; -" + r + ")\r\n");
+            displayBoundaries(R, r);
+            string boundariesResult1 = "Range of positive numbers: (" + r.ToString() + "; " + R.ToString() + ")\r\nRange of negative numbers: (-" + R.ToString() + "; -" + r.ToString() + ")\r\n";
+            ResultBox.AppendText(boundariesResult1);
 
-            ResultBox.SelectionColor = Color.Magenta;
-            ResultBox.AppendText("Westerfield method of finding boundaries\r\n");
-            ResultBox.SelectionColor = Color.Black;
+            displayTitle("Westerfield method of finding boundaries");
             R = getRadiusOverWesterfieldMethod(aNew);
             r = getRadiusOverWesterfieldMethod(inverseArray(aNew));
-            ResultBox.AppendText("Upper boundary (R) = " + R + "\r\nLower boundary (r) = " + r + "\r\n");
-            ResultBox.AppendText("Range of positive numbers: (0; " + R + "), negative numbers: (-" + r + "; 0)\r\n");
+            displayBoundaries(R, r);
+            string boundariesResult2 = "Range of positive numbers: (0; " + R.ToString() + ")\r\nRange of negative numbers: (-" + r.ToString() + "; 0)\r\n";
+            ResultBox.AppendText(boundariesResult2);
+            ResultBox.AppendText("Sending results...");
+
+            MessageBox.Show("Success!\r\nRoots: " + getPrintedArray(x) + "\r\nI method:\r\n" + boundariesResult1 + "II method:\r\n" + boundariesResult2);
+        }
+
+        private double[] getSignedRoots(double [] x, double [] a, int cancel)
+        {
+            double[] yPos = new double [x.Length];
+            double[] yNeg = new double[x.Length];
+            for (int i=0; i<x.Length; i++)
+            {
+                yPos[i] = Math.Round(solveEquation(x[i], a), cancel);
+                yNeg[i] = Math.Round(solveEquation(-1*x[i], a), cancel);
+            }
+            displayArray(yPos, "Ys with positive substituted roots");
+            displayArray(yNeg, "Ys with negative substituted roots");
+            for (int i=0; i<x.Length; i++)
+            {
+                if (yPos[i] == 0)
+                {
+                    x[i] = x[i];
+                }
+                else if (yNeg[i] == 0)
+                {
+                    x[i] = (-1) * x[i];
+                }
+                else
+                {
+                    x[i] = double.NaN;
+                }
+            }
+            return x;
+        }
+
+        private double solveEquation(double x, double [] a)
+        {
+            double sum = 0;
+            for (int i=0; i<a.Length; i++)
+            {
+                sum += a[i] * Math.Pow(x, i);
+            }
+            return sum;
         }
 
         private double[] inverseArray(double [] a)
@@ -152,7 +204,7 @@ namespace Onai_Lab_v2
             return 1/(1 + getMaxCoefWithBounds(a, 1, a.Length) / Math.Abs(a[0]));
         }
 
-        private void methodLobachevskiy(double eps, double[] a)
+        private double[] methodLobachevskiy(double eps, double[] a)
         {
             double criterion;
             int numberOfIteration = 0;
@@ -163,16 +215,18 @@ namespace Onai_Lab_v2
                 displayArray(b, "Coefficients");
                 if (checkOverflow(b))
                 {
-                    displayArray(calculateRoots(a, numberOfIteration), "Roots");
-                    return;
+                    double[] x = calculateRoots(a, numberOfIteration);
+                    displayArray(x, "Roots");
+                    return x;
                 }
                 numberOfIteration++;
                 criterion = methodLobachevskiyCriterion(a, b);
                 ResultBox.AppendText("Criterion: " + criterion + "; epsilon = " + eps + "\r\n");
                 if (criterion < eps)
                 {
-                    displayArray(calculateRoots(b, numberOfIteration), "Roots");
-                    return;
+                    double[] x = calculateRoots(b, numberOfIteration);
+                    displayArray(x, "Roots");
+                    return x;
                 }
                 a = b;
             }
@@ -180,13 +234,13 @@ namespace Onai_Lab_v2
 
         private double[] calculateRoots(double[] b, int numberOfIteration)
         {
-            double[] x = new double[b.Length];
+            double[] x = new double[b.Length-1];
             for (int i = 1; i < b.Length; i++)
             {
-                x[i] = Math.Pow(((b[b.Length - 1 - i]) / (b[b.Length - i])), 1 / (Math.Pow(2, numberOfIteration)));
-                ResultBox.AppendText(i + ") root is " + x[i].ToString() + "\r\n");
+                x[i-1] = Math.Pow(((b[b.Length - 1 - i]) / (b[b.Length - i])), 1 / (Math.Pow(2, numberOfIteration)));
+                ResultBox.AppendText(i + ") root is " + x[i-1].ToString() + "\r\n");
             }
-            return b;
+            return x;
         }
 
         private bool checkOverflow(double[] a)
@@ -266,6 +320,13 @@ namespace Onai_Lab_v2
             return b;
         }
 
+        private void displayTitle(string title)
+        {
+            ResultBox.SelectionColor = Color.Magenta;
+            ResultBox.AppendText(title + "\r\n");
+            ResultBox.SelectionColor = Color.Black;
+        }
+
         private void displayArray(double[] a, string arrayOf)
         {
             ResultBox.SelectionColor = Color.Blue;
@@ -279,10 +340,29 @@ namespace Onai_Lab_v2
                 ResultBox.SelectionColor = Color.Black;
                 if (i != 0)
                 {
-                    ResultBox.AppendText(", ");
+                    ResultBox.AppendText("; ");
                 }
             }
             ResultBox.AppendText(" ]\r\n");
+        }
+
+        private void displayBoundaries(double R, double r)
+        {
+            ResultBox.AppendText("Upper boundary (R) = " + R + "\r\nLower boundary (r) = " + r + "\r\n");
+        }
+
+        private string getPrintedArray(double[] a)
+        {
+            string result = "[ ";
+            for (int i = a.Length - 1; i >= 0; i--)
+            {
+                result += a[i].ToString();
+                if (i != 0)
+                {
+                    result += "; ";
+                }
+            }
+            return result + " ]\r\n";
         }
 
         private double methodLobachevskiyCriterion(double[] a, double[] b)
@@ -305,7 +385,8 @@ namespace Onai_Lab_v2
             tb2.Text = "-4";
             tb1.Text = "-5";
             tb0.Text = "2";
-            textBoxE.Text = "0,001";
+            textBoxE.Text = "0,0000001";
+            textBoxCancel.Text = "10";
         }
 
         private void buttonSet2_Click(object sender, EventArgs e)
@@ -318,7 +399,8 @@ namespace Onai_Lab_v2
             tb2.Text = "-596";
             tb1.Text = "-568";
             tb0.Text = "78";
-            textBoxE.Text = "0,001";
+            textBoxE.Text = "0,00001";
+            textBoxCancel.Text = "0";
         }
     }
 }

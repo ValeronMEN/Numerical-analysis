@@ -53,6 +53,8 @@
             this.buttonSet1 = new System.Windows.Forms.Button();
             this.buttonSet2 = new System.Windows.Forms.Button();
             this.ResultBox = new System.Windows.Forms.RichTextBox();
+            this.textBoxCancel = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tb0
@@ -193,6 +195,7 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(14, 222);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(707, 37);
@@ -204,7 +207,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(347, 186);
+            this.errorLabel.Location = new System.Drawing.Point(274, 184);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(50, 17);
             this.errorLabel.TabIndex = 49;
@@ -216,16 +219,16 @@
             this.textBoxError.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.textBoxError.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxError.ForeColor = System.Drawing.Color.Red;
-            this.textBoxError.Location = new System.Drawing.Point(403, 183);
+            this.textBoxError.Location = new System.Drawing.Point(330, 183);
             this.textBoxError.Name = "textBoxError";
             this.textBoxError.ReadOnly = true;
-            this.textBoxError.Size = new System.Drawing.Size(318, 22);
+            this.textBoxError.Size = new System.Drawing.Size(391, 22);
             this.textBoxError.TabIndex = 48;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 72);
+            this.label2.Location = new System.Drawing.Point(23, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 17);
             this.label2.TabIndex = 51;
@@ -233,7 +236,7 @@
             // 
             // textBoxE
             // 
-            this.textBoxE.Location = new System.Drawing.Point(57, 72);
+            this.textBoxE.Location = new System.Drawing.Point(57, 70);
             this.textBoxE.Name = "textBoxE";
             this.textBoxE.Size = new System.Drawing.Size(100, 22);
             this.textBoxE.TabIndex = 50;
@@ -260,6 +263,7 @@
             // 
             // ResultBox
             // 
+            this.ResultBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ResultBox.Location = new System.Drawing.Point(14, 276);
             this.ResultBox.Name = "ResultBox";
             this.ResultBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
@@ -267,11 +271,29 @@
             this.ResultBox.TabIndex = 54;
             this.ResultBox.Text = "";
             // 
+            // textBoxCancel
+            // 
+            this.textBoxCancel.Location = new System.Drawing.Point(26, 184);
+            this.textBoxCancel.Name = "textBoxCancel";
+            this.textBoxCancel.Size = new System.Drawing.Size(131, 22);
+            this.textBoxCancel.TabIndex = 55;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(23, 138);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(134, 34);
+            this.label9.TabIndex = 56;
+            this.label9.Text = "Cancel used in\r\nchecking root signs:";
+            // 
             // Lobachevskiy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 533);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxCancel);
             this.Controls.Add(this.ResultBox);
             this.Controls.Add(this.buttonSet2);
             this.Controls.Add(this.buttonSet1);
@@ -300,6 +322,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Lobachevskiy";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lobachevskiy";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Lobachevskiy_FormClosing);
             this.ResumeLayout(false);
@@ -333,5 +356,7 @@
         private System.Windows.Forms.Button buttonSet1;
         private System.Windows.Forms.Button buttonSet2;
         private System.Windows.Forms.RichTextBox ResultBox;
+        private System.Windows.Forms.TextBox textBoxCancel;
+        private System.Windows.Forms.Label label9;
     }
 }
