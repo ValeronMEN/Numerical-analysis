@@ -36,6 +36,7 @@ namespace Onai_Lab_v2
                 case 0:
                     equation.Text = example24;
                     textBoxMethod.Text = "Метод хорд";
+                    textBoxE.Text = "0,00000001";
                     break;
                 case 1:
                     equation.Text = example16;
@@ -119,12 +120,13 @@ namespace Onai_Lab_v2
                 a = b;
                 b = c;
             }
-            int n = 0;
+            int n = 1;
             double b1;
             while (true)
             {
                 b1 = methodOfChordsIteration(a, b, f);
                 ResultBox.AppendText("b" + n.ToString() + " = " + b1.ToString() + " (a = " + a.ToString() + ")\r\n");
+                ResultBox.AppendText("root: " + b1.ToString() + ", iteration №" + n.ToString() + "\r\n");
                 if (methodOfChordsCriterion(b, b1, e, f, fder1))
                 {
                     return b1;

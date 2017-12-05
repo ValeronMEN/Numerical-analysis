@@ -55,7 +55,6 @@ namespace Onai_Lab_v2
             a[2] = Convert.ToDouble(tb2.Text);
             a[1] = Convert.ToDouble(tb1.Text);
             a[0] = Convert.ToDouble(tb0.Text);
-            double eps = Convert.ToDouble(textBoxE.Text);
             for (int i = 7; i >= 0; i--)
             {
                 if (a[i] != 0)
@@ -75,46 +74,116 @@ namespace Onai_Lab_v2
             {
                 aNew[i] = a[i];
             }
-            a = new double[n+1];
-            a = aNew;
             ResultBox.AppendText("Extent of equation is " + n.ToString() + "\r\n");
-            displayArray(a, n, "Coefficients");
-            a = shortArrayInNumber(a);
-            methodLobachevskiy(eps, a, n);
+            displayArray(aNew, "Coefficients");
+            aNew = shortArrayInNumber(aNew, 30, getMinCoefAbs(a));
+            methodLobachevskiy(Convert.ToDouble(textBoxE.Text), aNew);
+
+            ResultBox.SelectionColor = Color.Magenta;
+            ResultBox.AppendText("Simple method of finding boundaries\r\n");
+            ResultBox.SelectionColor = Color.Black;
+            double R = calculateBigRadius(aNew);
+            double r = calculateSmallRadius(aNew);
+            ResultBox.AppendText("Upper boundary (R) = " + R + "\r\nLower boundary (r) = " + r + "\r\n");
+            ResultBox.AppendText("Range of positive numbers: (" + r + "; " + R + "), negative numbers: (-" + R + "; -" + r + ")\r\n");
+
+            ResultBox.SelectionColor = Color.Magenta;
+            ResultBox.AppendText("Westerfield method of finding boundaries\r\n");
+            ResultBox.SelectionColor = Color.Black;
+            R = getRadiusOverWesterfieldMethod(aNew);
+            r = getRadiusOverWesterfieldMethod(inverseArray(aNew));
+            ResultBox.AppendText("Upper boundary (R) = " + R + "\r\nLower boundary (r) = " + r + "\r\n");
+            ResultBox.AppendText("Range of positive numbers: (0; " + R + "), negative numbers: (-" + r + "; 0)\r\n");
         }
 
-        private void methodLobachevskiy(double eps, double[] a, int n)
+        private double[] inverseArray(double [] a)
+        {
+            double[] toReturn = new double[a.Length];
+            for (int i = 0; i < a.Length; i++)
+            {
+                toReturn[a.Length - 1 - i] = a[i];
+            }
+            return toReturn;
+        }
+
+        private double getRadiusOverWesterfieldMethod(double [] a)
+        {
+            if (a[a.Length - 1] != 1)
+            {
+                a = shortArrayInNumber(a, 0, a[a.Length - 1]);
+            }
+            double max1 = 0, max2 = 0, current;
+            for (int t = 1; t < a.Length; t++)
+            {
+                current = Math.Pow(Math.Abs(a[a.Length - 1 - t]), (1 / Convert.ToDouble(t)));
+                if (t == 1)
+                {
+                    max1 = current;
+                }
+                else if (t == 2)
+                {
+                    max2 = current;
+                }
+                else
+                {
+                    if (current > max1)
+                    {
+                        max1 = current;
+                    }
+                    else
+                    {
+                        if (current > max2)
+                        {
+                            max2 = current;
+                        }
+                    }
+                }
+            }
+            return max1 + max2;
+        }
+
+        private double calculateBigRadius(double[] a)
+        {
+            return 1 + (getMaxCoefWithBounds(a, 0, a.Length - 1) / Math.Abs(a[a.Length - 1]));
+        }
+
+        private double calculateSmallRadius(double[] a)
+        {
+            return 1/(1 + getMaxCoefWithBounds(a, 1, a.Length) / Math.Abs(a[0]));
+        }
+
+        private void methodLobachevskiy(double eps, double[] a)
         {
             double criterion;
             int numberOfIteration = 0;
             while (true)
             {
                 ResultBox.AppendText(numberOfIteration + " iteration...\r\n");
-                double[] b = methodLobachevskiyIteration(a, n);
-                displayArray(b, n, "Coefficients");
+                double[] b = methodLobachevskiyIteration(a);
+                displayArray(b, "Coefficients");
                 if (checkOverflow(b))
                 {
-                    displayArray(calculateRoots(a, n, numberOfIteration), n, "Roots");
+                    displayArray(calculateRoots(a, numberOfIteration), "Roots");
                     return;
                 }
                 numberOfIteration++;
-                criterion = methodLobachevskiyCriterion(a, b, n);
+                criterion = methodLobachevskiyCriterion(a, b);
                 ResultBox.AppendText("Criterion: " + criterion + "; epsilon = " + eps + "\r\n");
                 if (criterion < eps)
                 {
-                    displayArray(calculateRoots(b, n, numberOfIteration), n, "Roots");
+                    displayArray(calculateRoots(b, numberOfIteration), "Roots");
                     return;
                 }
                 a = b;
             }
         }
 
-        private double[] calculateRoots(double[] b, int n, int numberOfIteration)
+        private double[] calculateRoots(double[] b, int numberOfIteration)
         {
-            double[] x = new double[n + 1];
-            for (int i = 1; i <= n; i++)
+            double[] x = new double[b.Length];
+            for (int i = 1; i < b.Length; i++)
             {
-                x[i] = Math.Pow(((b[n - i]) / (b[n - i + 1])), 1 / (Math.Pow(2, numberOfIteration)));
+                x[i] = Math.Pow(((b[b.Length - 1 - i]) / (b[b.Length - i])), 1 / (Math.Pow(2, numberOfIteration)));
                 ResultBox.AppendText(i + ") root is " + x[i].ToString() + "\r\n");
             }
             return b;
@@ -132,7 +201,7 @@ namespace Onai_Lab_v2
             return false;
         }
 
-        private double getMinCoef(double[] a)
+        private double getMinCoefAbs(double[] a)
         {
             double min = Math.Abs(a[0]);
             double current;
@@ -147,47 +216,45 @@ namespace Onai_Lab_v2
             return min;
         }
 
-        private double[] shortArrayInNumber(double[] a)
+        private double getMaxCoefWithBounds(double[] a, int bound1, int bound2)
         {
-            double magicNumber = 30;
-            double minCoef = getMinCoef(a);
-            if (minCoef > magicNumber)
+            double max = Math.Abs(a[bound1]);
+            double current;
+            for (int i = (bound1+1); i < bound2; i++)
+            {
+                current = Math.Abs(a[i]);
+                if (current > max)
+                {
+                    max = current;
+                }
+            }
+            return max;
+        }
+
+        private double[] shortArrayInNumber(double[] a, double magicNumber, double intentOfShorting)
+        {
+            if (intentOfShorting > magicNumber)
             {
                 for (int i = 0; i < a.Length; i++)
                 {
-                    a[i] = a[i] / minCoef;
+                    a[i] = a[i] / intentOfShorting;
                     a[i] = Math.Round(a[i], 3);
                 }
-                displayArray(a, a.Length-1, "Shorted coefficients");
+                displayArray(a, "Shorted coefficients");
             }
             return a;
         }
 
-        private bool checkSimularNumbersInArray(double[] a, int n)
+        private double[] methodLobachevskiyIteration(double[] a)
         {
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = n; j > i; j--)
-                {
-                    if (a[i] == a[j] && a[i] != 0)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        private double[] methodLobachevskiyIteration(double[] a, int n)
-        {
-            double[] b = new double[8];
+            double[] b = new double[a.Length];
             double sum = 0;
-            for (int k = 0; k <= n; k++)
+            for (int k = 0; k < a.Length; k++)
             {
                 sum = 0;
-                for (int j = 1; j <= n - k; j++)
+                for (int j = 1; j < a.Length - k; j++)
                 {
-                    if (k + j > n || k - j < 0)
+                    if (k + j >= a.Length || k - j < 0)
                     {
                         continue;
                     }
@@ -199,13 +266,13 @@ namespace Onai_Lab_v2
             return b;
         }
 
-        private void displayArray(double[] a, int n, string arrayOf)
+        private void displayArray(double[] a, string arrayOf)
         {
             ResultBox.SelectionColor = Color.Blue;
             ResultBox.AppendText(arrayOf + " :\r\n");
             ResultBox.SelectionColor = Color.Black;
             ResultBox.AppendText("[ ");
-            for (int i=n; i>=0; i--)
+            for (int i= a.Length-1; i>=0; i--)
             {
                 ResultBox.SelectionColor = Color.BlueViolet;
                 ResultBox.AppendText(a[i].ToString());
@@ -218,10 +285,10 @@ namespace Onai_Lab_v2
             ResultBox.AppendText(" ]\r\n");
         }
 
-        private double methodLobachevskiyCriterion(double[] a, double[] b, int n)
+        private double methodLobachevskiyCriterion(double[] a, double[] b)
         {
             double sum = 0;
-            for (int i = n; i >= 0; i--)
+            for (int i = a.Length - 1; i >= 0; i--)
             {
                 sum += Math.Pow(1 - (b[i] / Math.Pow(a[i], 2)), 2);
             }
