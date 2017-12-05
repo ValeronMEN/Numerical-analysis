@@ -41,10 +41,12 @@ namespace Onai_Lab_v2
                 case 1:
                     equation.Text = example16;
                     textBoxMethod.Text = "Метод простых итераций";
+                    textBoxE.Text = "0,0001";
                     break;
                 case 2:
                     equation.Text = example16;
                     textBoxMethod.Text = "Упрощенный метод Ньютона";
+                    textBoxE.Text = "0,0001";
                     break;
                 default:
                     break;
@@ -80,13 +82,18 @@ namespace Onai_Lab_v2
             switch (comboBoxNumberOfExample.SelectedIndex)
             {
                 case 0:
+                    if (!checkErrorsInInterval(a, b, example24Function))
+                        return;
                     result = methodOfChords(a, b, e, example24Function, example24FunctionDerivative1, example24FunctionDerivative2);
                     break;
                 case 1:
-                    //result = methodOfSimpleIterations(a, b, e, example16FunctionInReverse);
-                    result = 1;
+                    if (!checkErrorsInInterval(a, b, example16Function))
+                        return;
+                    result = methodOfSimpleIterations(a, b, e, example16Function, example16FunctionDerivative1);
                     break;
                 case 2:
+                    if (!checkErrorsInInterval(a, b, example16Function))
+                        return;
                     result = methodOfNewtonMod(a, b, e, example16Function, example16FunctionDerivative1, example16FunctionDerivative2);
                     break;
                 default:
@@ -95,6 +102,38 @@ namespace Onai_Lab_v2
             ResultBox.AppendText("Result: " + result.ToString());
             MessageBox.Show("Success!\r\nResult: " + result.ToString());
             return;
+        }
+
+        private bool checkErrorsInInterval(double a, double b, function f)
+        {
+            if (!checkReducingOrIncreasing(a, b, f))
+            {
+                textBoxError.Text = "Отрезок не монотонный!";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
+                return false;
+            }
+            if ((f(a) >= 0 && f(b) >= 0) || (f(a) < 0 && f(b) < 0))
+            {
+                textBoxError.Text = "На данном промежутке функция не пересекает Ох!";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
+                return false;
+            }
+            return true;
+        }
+
+        private bool checkReducingOrIncreasing(double a, double b, function f)
+        {
+            double d = 0.001;
+            double c = a;
+            while (c < b)
+            {
+                c += d;
+                if ((c > 0 && (c - d) < 0) || (c < 0 && (c - d) > 0))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private double example24Function(double x)
@@ -197,36 +236,31 @@ namespace Onai_Lab_v2
             return a - (f(a)/ fder1(a0));
         }
 
-        private void Specification_Load(object sender, EventArgs e)
+        private double methodOfSimpleIterations(double a, double b, double e, function f, function fder1)
         {
+            double j1 = fder1(a);
+            double j2 = fder1(b);
+            double lambda = 2 / (j1 + j2);
+            double q = (j2 - j1) / (j2 + j1);
+            ResultBox.AppendText("alpha = " + j1 + "; gamma = " + j2 + "; lambda = " + lambda + "; q = " + q + "\r\n");
 
+            double xn1 = a, xn2;
+            int n = 1;
+            while (true)
+            {
+                xn2 = xn1 - lambda * f(xn1);
+                ResultBox.AppendText(n.ToString() + " iteration. Root: " + xn2.ToString() + "\r\n");
+                if (Math.Abs(xn2 - xn1) <= ((1 - q) / q) * e)
+                {
+                    return xn2;
+                }
+                xn1 = xn2;
+                if (n > 200)
+                {
+                    return -1;
+                }
+                n++;
+            }
         }
-        /*
-private double example16FunctionInReverse(double x)
-{
-   return Math.Pow(((5 - Math.Pow(Math.Cos(x), 3)) / (Math.Pow(Math.Log((Math.Sinh(x) + Math.Cosh(x)), 2), 3) - 1)), (1 / 3));
-}
-
-private double methodOfSimpleIterations(double a, double b, double e, function frev)
-{
-   int n = 0;
-   double xn, x = (a + b) / 2;
-   while (true)
-   {
-       xn = example16FunctionInReverse(x);
-       ResultBox.AppendText("x" + n.ToString() + " = " + xn.ToString() + " (b = " + b.ToString() + ")\r\n");
-       if (methodOfChordsCriterion(x, xn, e, f, fder1))
-       {
-           return a1;
-       }
-       x = xn;
-       if (n > 200)
-       {
-           return -1;
-       }
-       n++;
-   }
-}
-*/
     }
 }
