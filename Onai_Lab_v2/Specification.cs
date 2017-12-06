@@ -238,6 +238,12 @@ namespace Onai_Lab_v2
 
         private double methodOfSimpleIterations(double a, double b, double e, function f, function fder1)
         {
+            if (a > b)
+            {
+                double c = a;
+                a = b;
+                b = c;
+            }
             double j1 = fder1(a);
             double j2 = fder1(b);
             double lambda = 2 / (j1 + j2);
@@ -254,12 +260,13 @@ namespace Onai_Lab_v2
                 {
                     return xn2;
                 }
-                xn1 = xn2;
-                if (n > 200)
-                {
-                    return -1;
-                }
                 n++;
+                if (n > 2000)
+                {
+                    ResultBox.AppendText("The iteration number became more than 2000. Overflow!\r\nAborting...\r\n");
+                    return xn2;
+                }
+                xn1 = xn2;
             }
         }
     }

@@ -168,6 +168,7 @@ namespace Onai_Lab_v2
             for (int t = 1; t < a.Length; t++)
             {
                 current = Math.Pow(Math.Abs(a[a.Length - 1 - t]), (1 / Convert.ToDouble(t)));
+                ResultBox.AppendText("For t = " + t.ToString() + ", iteration = " + current.ToString() + "\r\n");
                 if (t == 1)
                 {
                     max1 = current;
@@ -375,6 +376,7 @@ namespace Onai_Lab_v2
             return Math.Sqrt(sum);
         }
 
+        //x^4 + 3x^3 - 4x^2 - 5x + 2 = 0
         private void buttonSet1_Click(object sender, EventArgs e)
         {
             tb7.Text = "0";
@@ -389,6 +391,7 @@ namespace Onai_Lab_v2
             textBoxCancel.Text = "10";
         }
 
+        //-46x^7 - 257 x^6 -146 x^5 + 831 x^4 + 819x^3 -596x^2 -568x + 78 = 0
         private void buttonSet2_Click(object sender, EventArgs e)
         {
             tb7.Text = "-46";
