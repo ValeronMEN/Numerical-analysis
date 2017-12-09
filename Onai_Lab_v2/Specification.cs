@@ -35,17 +35,17 @@ namespace Onai_Lab_v2
             {
                 case 0:
                     equation.Text = example24;
-                    textBoxMethod.Text = "Метод хорд";
+                    textBoxMethod.Text = "Method of chords";
                     textBoxE.Text = "0,00000001";
                     break;
                 case 1:
                     equation.Text = example16;
-                    textBoxMethod.Text = "Метод простых итераций";
+                    textBoxMethod.Text = "Simple iterations method";
                     textBoxE.Text = "0,0001";
                     break;
                 case 2:
                     equation.Text = example16;
-                    textBoxMethod.Text = "Упрощенный метод Ньютона";
+                    textBoxMethod.Text = "Simplified Newton method";
                     textBoxE.Text = "0,0001";
                     break;
                 default:
@@ -59,7 +59,7 @@ namespace Onai_Lab_v2
             ResultBox.Text = "Starting...\r\n";
             if (comboBoxNumberOfExample.SelectedIndex == -1)
             {
-                textBoxError.Text = "Метод и пример не заданы";
+                textBoxError.Text = "Method and example aren't defined";
                 ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
                 return;
             }
@@ -71,7 +71,7 @@ namespace Onai_Lab_v2
             }
             catch (FormatException exc)
             {
-                textBoxError.Text = "Ошибка в значениях a, b или E";
+                textBoxError.Text = "Error in a, b or E values";
                 ResultBox.Text += "Error: " + textBoxError.Text + "\r\n" + exc;
                 return;
             }
@@ -97,7 +97,7 @@ namespace Onai_Lab_v2
                     result = methodOfNewtonMod(a, b, e, example16Function, example16FunctionDerivative1, example16FunctionDerivative2);
                     break;
                 default:
-                    throw new Exception("Неправильный метод");
+                    throw new Exception("Incorrect method!");
             }
             ResultBox.AppendText("Result: " + result.ToString());
             MessageBox.Show("Success!\r\nResult: " + result.ToString());
@@ -108,13 +108,13 @@ namespace Onai_Lab_v2
         {
             if (!checkReducingOrIncreasing(a, b, f))
             {
-                textBoxError.Text = "Отрезок не монотонный!";
+                textBoxError.Text = "The line segment is not monotonous!";
                 ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
                 return false;
             }
             if ((f(a) >= 0 && f(b) >= 0) || (f(a) < 0 && f(b) < 0))
             {
-                textBoxError.Text = "На данном промежутке функция не пересекает Ох!";
+                textBoxError.Text = "Function doesn't cross Ox in this line segment!";
                 ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
                 return false;
             }
@@ -125,12 +125,20 @@ namespace Onai_Lab_v2
         {
             double d = 0.001;
             double c = a;
+            int n = 0;
             while (c < b)
             {
                 c += d;
-                if ((c > 0 && (c - d) < 0) || (c < 0 && (c - d) > 0))
+                if ((f(c) >= 0 && f(c - d) < 0) || (f(c) < 0 && f(c - d) >= 0))
                 {
-                    return false;
+                    if (n == 1)
+                    {
+                        return false;
+                    }
+                    else if (n == 0)
+                    {
+                        n++;
+                    }
                 }
             }
             return true;

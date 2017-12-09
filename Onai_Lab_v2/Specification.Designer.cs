@@ -69,9 +69,9 @@
             // 
             this.comboBoxNumberOfExample.FormattingEnabled = true;
             this.comboBoxNumberOfExample.Items.AddRange(new object[] {
-            "24 - метод хорд",
-            "16 - метод простых итераций",
-            "16 - упрощенный метод ньютона"});
+            "24 - method of chords",
+            "16 - simple iterations method",
+            "16 - simplified Newton method"});
             this.comboBoxNumberOfExample.Location = new System.Drawing.Point(21, 48);
             this.comboBoxNumberOfExample.Name = "comboBoxNumberOfExample";
             this.comboBoxNumberOfExample.Size = new System.Drawing.Size(259, 24);
@@ -231,7 +231,7 @@
             this.MaximizeBox = false;
             this.Name = "Specification";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Specification";
+            this.Text = "Refinement";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Specification_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

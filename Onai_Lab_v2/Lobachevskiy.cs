@@ -42,7 +42,7 @@ namespace Onai_Lab_v2
             }
             catch (FormatException exc)
             {
-                textBoxError.Text = "Ошибка в значениях коэфициентов";
+                textBoxError.Text = "The coefficient values error!";
                 ResultBox.Text += "Error: " + textBoxError.Text + "\r\n" + exc;
                 return;
             }
@@ -62,13 +62,25 @@ namespace Onai_Lab_v2
                 {
                     if (i == 0)
                     {
-                        textBoxError.Text = "Неправильное уравнение!";
+                        textBoxError.Text = "Incorrect equation!";
                         ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
                         return;
                     }
                     n = i;
                     break;
                 }
+            }
+            if (Convert.ToInt32(textBoxCancel.Text) < 0)
+            {
+                textBoxError.Text = "The cancel value error!";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
+                return;
+            }
+            if (Convert.ToDouble(textBoxE.Text) < 0)
+            {
+                textBoxError.Text = "The epsilon value error!";
+                ResultBox.Text += "Error: " + textBoxError.Text + "\r\n";
+                return;
             }
 
             double[] aNew = new double[n+1];
