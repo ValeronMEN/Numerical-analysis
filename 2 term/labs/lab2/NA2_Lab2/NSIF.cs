@@ -225,7 +225,8 @@ namespace NA2_Lab2
                     break;
             }
         }
-
+        
+        // test function
         private Dictionary<double, string> getDistancesBetweenNumbers()
         {
             Dictionary<double, string> dict = new Dictionary<double, string>();
