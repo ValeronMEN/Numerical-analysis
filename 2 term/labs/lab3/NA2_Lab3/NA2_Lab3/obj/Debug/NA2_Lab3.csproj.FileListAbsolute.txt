@@ -1,0 +1,11 @@
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\bin\Debug\NA2_Lab3.exe.config
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\bin\Debug\NA2_Lab3.exe
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\bin\Debug\NA2_Lab3.pdb
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.csprojResolveAssemblyReference.cache
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.Main.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.Properties.Resources.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.RecTrap.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.Trap.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.csproj.GenerateResource.Cache
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.exe
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab3\NA2_Lab3\obj\Debug\NA2_Lab3.pdb
