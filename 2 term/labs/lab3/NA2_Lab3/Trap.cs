@@ -80,14 +80,14 @@ namespace NA2_Lab3
             double result = 0;
             for (int i = 0; i <= nVar; i++)
             {
-                double xVar = aVar + i * hVar;
+                double yVar = f(aVar + i * hVar);
                 if (i == 0 || i==nVar)
                 {
-                    result += (f(xVar) / 2);
+                    result += (yVar / 2);
                 }
                 else
                 {
-                    result += f(xVar);
+                    result += yVar;
                 }
             }
             return result * hVar;
