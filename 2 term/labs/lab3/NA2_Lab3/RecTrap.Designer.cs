@@ -61,7 +61,7 @@
             this.textBoxPrecision.Name = "textBoxPrecision";
             this.textBoxPrecision.Size = new System.Drawing.Size(100, 22);
             this.textBoxPrecision.TabIndex = 9;
-            this.textBoxPrecision.Text = "0.001";
+            this.textBoxPrecision.Text = "0.1";
             // 
             // textBoxResult
             // 

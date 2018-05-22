@@ -128,11 +128,21 @@ namespace NA2_Lab3
                 textBoxResult.Text += "Error with parts[1]: \r\n" + exc;
             }
             double integer = Convert.ToDouble(parts[0]);
+            bool isSplitted = false;
+            if (parts[1][0] == '0')
+            {
+                parts[1] = "1" + parts[1].Remove(0, 1);
+                isSplitted = true;
+            }
             double fractionInt = Convert.ToDouble(parts[1]);
             double fraction = 0;
             while (fractionInt >= 1)
             {
                 fractionInt = fraction = fractionInt / 10;
+            }
+            if (isSplitted)
+            {
+                return integer + fraction - 0.1;
             }
             return integer + fraction;
         }

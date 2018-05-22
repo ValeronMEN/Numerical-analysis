@@ -38,11 +38,18 @@ namespace NA2_Lab3
         {
             double b = 7;
             double a = 3;
+
+            double b2 = Math.PI * 1.25; //3.925
+            double a2 = Math.PI * 1.75; //5.495
+
             double epsilon = getDoubleValueFromString(textBoxPrecision.Text);
-            rectangleTrapeziumAlgorithm(b, a, runTheFunction, epsilon);
+            double res1 = rectangleTrapeziumAlgorithm(b, a2, runTheFunction, epsilon);
+            double res2 = rectangleTrapeziumAlgorithm(b2, a, runTheFunction, epsilon);
+            double result = res1 + res2;
+            textBoxResult.Text += "Result I: " + result + "\r\n";
         }
 
-        private void rectangleTrapeziumAlgorithm(double b, double a, function func, double epsilon)
+        private double rectangleTrapeziumAlgorithm(double b, double a, function func, double epsilon)
         {
             int maxArrSize = 30; // this is my value for an array max size
 
@@ -75,9 +82,10 @@ namespace NA2_Lab3
                     sum += y;
                 }
                 double IpH = resultArr[j, 1] = sum * H; // I^P(H)
-
+       
                 double Ith = resultArr[j, 2] = 0.5 * (IpH + ItH); // I^T(h)
-                double Rth = resultArr[j, 3] = (1 / 3) * (Ith - ItH); // R^T(h)
+                double dif = Ith - ItH;
+                double Rth = resultArr[j, 3] = dif / 3; // R^T(h)
 
                 Rth = Math.Abs(Rth);
                 if (Rth > epsilon)
@@ -93,20 +101,18 @@ namespace NA2_Lab3
                 }
                 j++;
             }
+            printTheResultTable(resultArr, j + 1);
             textBoxResult.Text += "Result (I^C(h)): " + Ich + "\r\n";
-            printTheResultTable(resultArr, j+1);
+            return Ich;
         }
 
         private void printTheResultTable(double [,] resultArr, int size)
         {
-            textBoxResult.Text += ">>> ItH IpH Ith Rth\r\n";
+            textBoxResult.Text += String.Format("{0,6}{1,30}{2,30}{3,30}{4,30}\r\n", ">>>", "ItH", "IpH", "Ith", "Rth");
             for (int i=0; i<size; i++)
             {
-                textBoxResult.Text += "n=" + i + ": ";
-                for (int j=0; j<4; j++)
-                {
-                    textBoxResult.Text += resultArr[i, j] + " ";
-                }
+                string number = "n=" + i + ":";
+                textBoxResult.Text += String.Format("{0,6}{1,20}{2,20}{3,20}{4,20}", number, resultArr[i, 0], resultArr[i, 1], resultArr[i, 2], resultArr[i, 3]);
                 textBoxResult.Text += "\r\n";
             }
         }
@@ -146,11 +152,21 @@ namespace NA2_Lab3
                 textBoxResult.Text += "Error with parts[1]: \r\n" + exc;
             }
             double integer = Convert.ToDouble(parts[0]);
+            bool isSplitted = false;
+            if(parts[1][0] == '0')
+            {
+                parts[1] = "1" + parts[1].Remove(0, 1);
+                isSplitted = true;
+            }
             double fractionInt = Convert.ToDouble(parts[1]);
             double fraction = 0;
             while (fractionInt >= 1)
             {
                 fractionInt = fraction = fractionInt / 10;
+            }
+            if (isSplitted)
+            {
+                return integer + fraction - 0.1;
             }
             return integer + fraction;
         }
