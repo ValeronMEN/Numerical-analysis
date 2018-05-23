@@ -1,7 +1,6 @@
 c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\bin\Debug\NA2_Lab2.exe.config
 C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\bin\Debug\NA2_Lab2.exe
 C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\bin\Debug\NA2_Lab2.pdb
-C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\obj\Debug\NA2_Lab2.csprojResolveAssemblyReference.cache
 C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\obj\Debug\NA2_Lab2.Properties.Resources.resources
 C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\obj\Debug\NA2_Lab2.csproj.GenerateResource.Cache
 C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab2\NA2_Lab2\obj\Debug\NA2_Lab2.exe

@@ -106,6 +106,12 @@ namespace NA2_Lab3
 
         private double getDoubleValueFromString(string tb)
         {
+            double minus = 1;
+            if (tb[0] == '-')
+            {
+                minus *= -1;
+                tb = tb.Split('-')[1];
+            }
             string[] parts = tb.Split('.');
             try
             {
@@ -142,9 +148,9 @@ namespace NA2_Lab3
             }
             if (isSplitted)
             {
-                return integer + fraction - 0.1;
+                return (integer + fraction - 0.1) *minus;
             }
-            return integer + fraction;
+            return (integer + fraction) * minus;
         }
     }
 }

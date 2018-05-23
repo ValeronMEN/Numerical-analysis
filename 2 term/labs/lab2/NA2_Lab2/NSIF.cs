@@ -106,6 +106,12 @@ namespace NA2_Lab2
 
         private double getDoubleValueFromString(string tb)
         {
+            double minus = 1;
+            if (tb[0] == '-')
+            {
+                minus *= -1;
+                tb = tb.Split('-')[1];
+            }
             string[] parts = tb.Split('.');
             try
             {
@@ -128,13 +134,23 @@ namespace NA2_Lab2
                 textBoxResult.Text += "Error with parts[1]: \r\n" + exc;
             }
             double integer = Convert.ToDouble(parts[0]);
+            bool isSplitted = false;
+            if (parts[1][0] == '0')
+            {
+                parts[1] = "1" + parts[1].Remove(0, 1);
+                isSplitted = true;
+            }
             double fractionInt = Convert.ToDouble(parts[1]);
             double fraction = 0;
-            while(fractionInt >= 1)
+            while (fractionInt >= 1)
             {
                 fractionInt = fraction = fractionInt / 10;
             }
-            return integer + fraction;
+            if (isSplitted)
+            {
+                return (integer + fraction - 0.1) * minus;
+            }
+            return (integer + fraction) * minus;
         }
 
         private void printMainArr(double[,] mainArr, int size)
@@ -144,15 +160,15 @@ namespace NA2_Lab2
             {
                 if (j == 0)
                 {
-                    textBoxResult.Text += "x  ";
+                    textBoxResult.Text += String.Format("{0, 18}", "x");
                 }
                 else if(j == 1)
                 {
-                    textBoxResult.Text += "y ";
+                    textBoxResult.Text += String.Format("{0, 20}", "y"); ;
                 }
                 else
                 {
-                    textBoxResult.Text += "d"+(j-1)+"y ";
+                    textBoxResult.Text += String.Format("{0, 30}", "d" + (j - 1) + "y");
                 }
             }
             textBoxResult.Text += "\r\n";
@@ -160,7 +176,7 @@ namespace NA2_Lab2
             {
                 for (int j=0; j<size+1; j++)
                 {
-                    textBoxResult.Text += mainArr[i,j] + "  ";
+                    textBoxResult.Text += String.Format("{0, 18}", mainArr[i, j]);
                 }
                 textBoxResult.Text += "\r\n";
             }

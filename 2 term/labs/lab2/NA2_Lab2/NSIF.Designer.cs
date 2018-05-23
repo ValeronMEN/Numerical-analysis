@@ -48,7 +48,8 @@
             // 
             // textBoxInputNumbers
             // 
-            this.textBoxInputNumbers.Location = new System.Drawing.Point(83, 67);
+            this.textBoxInputNumbers.Location = new System.Drawing.Point(83, 68);
+            this.textBoxInputNumbers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxInputNumbers.Name = "textBoxInputNumbers";
             this.textBoxInputNumbers.Size = new System.Drawing.Size(255, 22);
             this.textBoxInputNumbers.TabIndex = 0;
@@ -56,9 +57,10 @@
             // 
             // buttonInterpolNewton
             // 
-            this.buttonInterpolNewton.Location = new System.Drawing.Point(368, 238);
+            this.buttonInterpolNewton.Location = new System.Drawing.Point(479, 244);
+            this.buttonInterpolNewton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.buttonInterpolNewton.Name = "buttonInterpolNewton";
-            this.buttonInterpolNewton.Size = new System.Drawing.Size(156, 42);
+            this.buttonInterpolNewton.Size = new System.Drawing.Size(157, 43);
             this.buttonInterpolNewton.TabIndex = 1;
             this.buttonInterpolNewton.Text = "Program start";
             this.buttonInterpolNewton.UseVisualStyleBackColor = true;
@@ -66,14 +68,16 @@
             // 
             // textBoxH
             // 
-            this.textBoxH.Location = new System.Drawing.Point(140, 173);
+            this.textBoxH.Location = new System.Drawing.Point(141, 172);
+            this.textBoxH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxH.Name = "textBoxH";
             this.textBoxH.Size = new System.Drawing.Size(198, 22);
             this.textBoxH.TabIndex = 2;
             // 
             // textBoxX0
             // 
-            this.textBoxX0.Location = new System.Drawing.Point(140, 145);
+            this.textBoxX0.Location = new System.Drawing.Point(141, 146);
+            this.textBoxX0.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxX0.Name = "textBoxX0";
             this.textBoxX0.Size = new System.Drawing.Size(198, 22);
             this.textBoxX0.TabIndex = 3;
@@ -81,7 +85,7 @@
             // labelH
             // 
             this.labelH.AutoSize = true;
-            this.labelH.Location = new System.Drawing.Point(9, 173);
+            this.labelH.Location = new System.Drawing.Point(10, 172);
             this.labelH.Name = "labelH";
             this.labelH.Size = new System.Drawing.Size(63, 17);
             this.labelH.TabIndex = 4;
@@ -90,7 +94,7 @@
             // labelX0
             // 
             this.labelX0.AutoSize = true;
-            this.labelX0.Location = new System.Drawing.Point(10, 145);
+            this.labelX0.Location = new System.Drawing.Point(10, 146);
             this.labelX0.Name = "labelX0";
             this.labelX0.Size = new System.Drawing.Size(125, 17);
             this.labelX0.TabIndex = 5;
@@ -107,11 +111,13 @@
             // 
             // textBoxResult
             // 
-            this.textBoxResult.Location = new System.Drawing.Point(9, 295);
+            this.textBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxResult.Location = new System.Drawing.Point(10, 295);
+            this.textBoxResult.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxResult.Size = new System.Drawing.Size(867, 209);
+            this.textBoxResult.Size = new System.Drawing.Size(1118, 318);
             this.textBoxResult.TabIndex = 7;
             // 
             // comboBoxNumberOfExample
@@ -121,7 +127,8 @@
             "1;4;9;16;25",
             "-13.021;-13.791;-14.989",
             "Function"});
-            this.comboBoxNumberOfExample.Location = new System.Drawing.Point(344, 65);
+            this.comboBoxNumberOfExample.Location = new System.Drawing.Point(344, 66);
+            this.comboBoxNumberOfExample.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBoxNumberOfExample.Name = "comboBoxNumberOfExample";
             this.comboBoxNumberOfExample.Size = new System.Drawing.Size(180, 24);
             this.comboBoxNumberOfExample.TabIndex = 8;
@@ -130,7 +137,7 @@
             // labelX
             // 
             this.labelX.AutoSize = true;
-            this.labelX.Location = new System.Drawing.Point(9, 201);
+            this.labelX.Location = new System.Drawing.Point(10, 201);
             this.labelX.Name = "labelX";
             this.labelX.Size = new System.Drawing.Size(81, 17);
             this.labelX.TabIndex = 9;
@@ -138,15 +145,16 @@
             // 
             // textBoxInputTasks
             // 
-            this.textBoxInputTasks.Location = new System.Drawing.Point(95, 201);
+            this.textBoxInputTasks.Location = new System.Drawing.Point(94, 201);
+            this.textBoxInputTasks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxInputTasks.Name = "textBoxInputTasks";
-            this.textBoxInputTasks.Size = new System.Drawing.Size(781, 22);
+            this.textBoxInputTasks.Size = new System.Drawing.Size(1034, 22);
             this.textBoxInputTasks.TabIndex = 10;
             // 
             // labelFunctionWord
             // 
             this.labelFunctionWord.AutoSize = true;
-            this.labelFunctionWord.Location = new System.Drawing.Point(530, 64);
+            this.labelFunctionWord.Location = new System.Drawing.Point(782, 75);
             this.labelFunctionWord.Name = "labelFunctionWord";
             this.labelFunctionWord.Size = new System.Drawing.Size(271, 17);
             this.labelFunctionWord.TabIndex = 11;
@@ -155,17 +163,18 @@
             // textBoxFunction
             // 
             this.textBoxFunction.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBoxFunction.Location = new System.Drawing.Point(807, 61);
+            this.textBoxFunction.Location = new System.Drawing.Point(1058, 71);
+            this.textBoxFunction.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxFunction.Name = "textBoxFunction";
             this.textBoxFunction.ReadOnly = true;
-            this.textBoxFunction.Size = new System.Drawing.Size(72, 22);
+            this.textBoxFunction.Size = new System.Drawing.Size(71, 22);
             this.textBoxFunction.TabIndex = 12;
             this.textBoxFunction.Text = "No";
             // 
             // labelSize
             // 
             this.labelSize.AutoSize = true;
-            this.labelSize.Location = new System.Drawing.Point(741, 92);
+            this.labelSize.Location = new System.Drawing.Point(993, 103);
             this.labelSize.Name = "labelSize";
             this.labelSize.Size = new System.Drawing.Size(60, 17);
             this.labelSize.TabIndex = 13;
@@ -174,17 +183,18 @@
             // textBoxSize
             // 
             this.textBoxSize.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.textBoxSize.Location = new System.Drawing.Point(807, 92);
+            this.textBoxSize.Location = new System.Drawing.Point(1058, 103);
+            this.textBoxSize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxSize.Name = "textBoxSize";
             this.textBoxSize.ReadOnly = true;
-            this.textBoxSize.Size = new System.Drawing.Size(69, 22);
+            this.textBoxSize.Size = new System.Drawing.Size(70, 22);
             this.textBoxSize.TabIndex = 14;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(257, 19);
+            this.label1.Location = new System.Drawing.Point(404, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(340, 25);
             this.label1.TabIndex = 15;
@@ -194,7 +204,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 513);
+            this.ClientSize = new System.Drawing.Size(1140, 626);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxSize);
             this.Controls.Add(this.labelSize);
@@ -211,6 +221,8 @@
             this.Controls.Add(this.textBoxH);
             this.Controls.Add(this.buttonInterpolNewton);
             this.Controls.Add(this.textBoxInputNumbers);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "NSIF";
             this.Text = "Newton\'s second interpolation formula";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NSIF_FormClosing);

@@ -44,7 +44,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(364, 20);
+            this.label1.Location = new System.Drawing.Point(577, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(531, 25);
             this.label1.TabIndex = 27;
@@ -80,11 +80,12 @@
             // 
             // textBoxResult
             // 
+            this.textBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxResult.Location = new System.Drawing.Point(15, 247);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxResult.Size = new System.Drawing.Size(1161, 262);
+            this.textBoxResult.Size = new System.Drawing.Size(1595, 584);
             this.textBoxResult.TabIndex = 23;
             // 
             // labelY
@@ -98,7 +99,7 @@
             // 
             // buttonNFIF
             // 
-            this.buttonNFIF.Location = new System.Drawing.Point(543, 181);
+            this.buttonNFIF.Location = new System.Drawing.Point(772, 179);
             this.buttonNFIF.Name = "buttonNFIF";
             this.buttonNFIF.Size = new System.Drawing.Size(161, 51);
             this.buttonNFIF.TabIndex = 17;
@@ -133,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1188, 524);
+            this.ClientSize = new System.Drawing.Size(1622, 843);
             this.Controls.Add(this.labelKnownXs);
             this.Controls.Add(this.textBoxInputXs);
             this.Controls.Add(this.label1);
