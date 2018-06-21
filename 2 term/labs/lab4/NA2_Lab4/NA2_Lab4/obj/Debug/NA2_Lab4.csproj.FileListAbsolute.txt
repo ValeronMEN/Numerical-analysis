@@ -1,0 +1,11 @@
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\bin\Debug\NA2_Lab4.exe.config
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\bin\Debug\NA2_Lab4.exe
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\bin\Debug\NA2_Lab4.pdb
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.csprojResolveAssemblyReference.cache
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.Main.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.Properties.Resources.resources
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.csproj.GenerateResource.Cache
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.exe
+c:\users\drlove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.pdb
+C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.KuttaMersonMethod.resources
+C:\Users\DrLove\documents\visual studio 2015\Projects\NA2_Lab4\NA2_Lab4\obj\Debug\NA2_Lab4.MidpointMethod.resources

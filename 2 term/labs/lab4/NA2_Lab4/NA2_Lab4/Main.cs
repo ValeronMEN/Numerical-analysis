@@ -8,27 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SGW2
+namespace NA2_Lab4
 {
     public partial class Main : Form
     {
         public Main()
         {
             InitializeComponent();
-            label1.Text = "Welcome to Onai settlement and graphic work 9001";
         }
 
-        private void eigenvaluesButton_Click(object sender, EventArgs e)
+        private void buttonMiddlePoint_Click(object sender, EventArgs e)
         {
-            Eigenvalues ev = new SGW2.Eigenvalues();
+            MidpointMethod ev = new NA2_Lab4.MidpointMethod();
             ev.Owner = this;
             ev.Show();
             this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonKM_Click(object sender, EventArgs e)
         {
-            Singularvalues ev = new SGW2.Singularvalues();
+            KuttaMersonMethod ev = new NA2_Lab4.KuttaMersonMethod();
             ev.Owner = this;
             ev.Show();
             this.Hide();

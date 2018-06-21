@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SGW2.Properties
+namespace NA2_Lab4.Properties
 {
 
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SGW2
+namespace NA2_Lab4
 {
     static class Program
     {
